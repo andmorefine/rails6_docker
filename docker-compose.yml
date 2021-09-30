@@ -1,0 +1,21 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+    volumes:
+      - .:/app
+      - bundle:/app/vendor/bundle
+    tty: true
+    stdin_open: true
+  db:
+    image: mysql:5.7
+    ports:
+      - 53308:3306
+    volumes:
+      - mysql-webapp-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+volumes:
+  bundle:
+  mysql-webapp-data:
